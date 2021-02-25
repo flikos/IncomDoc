@@ -59,5 +59,5 @@ if __name__ == '__main__':
     def get_datetime_str():
         return datetime.datetime.today().strftime('%Y.%m.%d sec: %S')
     print(get_datetime_str())
-    print(get_datetime_str(s))
+    print(get_datetime_str())
 
