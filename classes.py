@@ -59,7 +59,7 @@ if __name__ == '__main__':
     sql = 'INSERT INTO documents (date, number, name, source) values(?, ?, ?, ?)'
     data = [
         (get_today_str(), '100', 'letter', 'opfr'),
-        (get_today_str(), '101', 'query', 'adm'),
+        (get_today_str(), '101', 'query  ', 'adm'),
         (get_today_str(), '102', 'query', 'opfr')
     ]
     with con:
