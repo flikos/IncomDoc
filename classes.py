@@ -11,6 +11,9 @@ class Document(AttrDisplay):
         self.number = number
         self.name = None or name
         self.source = None or source
+    def aslist(self):
+        return [self.date, self.number, self.name, self.source]
+
 
 class Contractor:
     def __init__(self, name):

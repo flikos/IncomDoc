@@ -14,8 +14,10 @@ if __name__ == '__main__':
         for row in db.cur:
             print(row)
 
+
+    doc1 = classes.Document(get_today_str(), str(random.randint(1, 200)), 'Настройка XML-менеджера', 'opfr')
     with DB.Database('IncomingDocuments.db') as db:
-        db.insert_doc(classes.Document(get_today_str(), str(random.randint(1, 200)), 'Настройка XML-менеджера', 'opfr'))
+        db.insert_doc(doc1.aslist())
         db.execute('SELECT * FROM documents')
         for row in db.cur:
             print(row)

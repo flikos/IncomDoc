@@ -1,14 +1,12 @@
 import sqlite3
 
-from classes import Document
+# from classes import Document
 
 class Database(object):
-    """sqlite3 database class that holds testers jobs"""
     # потом надо засунуть в YAML с ограничением по доступу
     __DB_LOCATION = "IncomingDocuments.db"
 
     def __init__(self, db_location=None):
-        """Initialize db class variables"""
         if db_location is not None:
             self.connection = sqlite3.connect(db_location)
         else:
@@ -32,7 +30,6 @@ class Database(object):
         self.connection.close()
 
     def close(self):
-        """close sqlite3 connection"""
         self.connection.close()
 
     def execute(self, new_data):
@@ -41,17 +38,14 @@ class Database(object):
         # if new_data.lstrip().upper().startswith("SELECT"):
         #     return self.cur.fetchall()
 
-    def insert_doc(self, Document):
+    def insert_doc(self, new_data):
         """add one document to database"""
-        data = [Document.date, Document.number, Document.name, Document.source]
         self.create_table()
-        self.cur.execute('INSERT INTO documents(date, number, name, source) VALUES(?, ?, ?, ?)', data)
+        self.cur.execute('INSERT INTO documents(date, number, name, source) VALUES(?, ?, ?, ?)', new_data)
 
     def executemany(self, many_new_data):
         """add many new data to database in one go"""
         self.create_table()
-        for row in many_new_data:
-            print(row)
         self.cur.executemany('INSERT INTO documents(date, number, name, source) VALUES(?, ?, ?, ?)', many_new_data)
 
     def create_table(self):
@@ -66,5 +60,4 @@ class Database(object):
             ''')
 
     def commit(self):
-        """commit changes to database"""
         self.connection.commit()
